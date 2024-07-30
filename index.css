@@ -1,0 +1,18 @@
+body{
+    background-color: rgb(128, 8, 74);
+    
+}
+h1{
+    color:aquamarine;
+}
+button{
+    color:rgb(94, 30, 212);
+}
+input{
+    margin: 10px;
+    border-radius: 15px;
+}
+table{
+    color: rgb(226, 210, 210);
+    
+}
