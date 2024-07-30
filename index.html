@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Advanced Textile Management System </title>
+</head>
+
+<body>
+    <h1>Textile Form</h1>
+    <input id="firstInput" placeholder="Enter textile product">
+    <br>
+    <input id="secondInput" placeholder="Enter price of product">
+    <br>
+    <button id="addBtn">Add textile product to the set</button>
+
+    <table id="firstTable"></table>
+
+
+</body>
+
+<script type="module">
+    import TextileManager from "./textileManager.mjs";
+
+    document.getElementById("addBtn").addEventListener("click", addFunction);
+    let myTextileManager = new TextileManager();
+
+
+    function addFunction() {
+        let myName = document.getElementById("firstInput").value;
+        let myPrice = document.getElementById("secondInput").value;
+        myTextileManager.add(myName, myPrice);
+        let myTable = document.getElementById("firstTable");
+        myTable.style.textAlign="center";
+       let tr=document.createElement("tr");
+       let td1=document.createElement("td");
+       let td2=document.createElement("td");
+       let td3=document.createElement("td");
+       let td4=document.createElement("td");
+       td1.innerHTML =myName;
+       td2.innerHTML=myPrice;
+
+       td3.innerHTML="DELETE";
+       td3.style.color="red";
+       td3.addEventListener("click", function(){
+        tr.remove();
+        return myTextileManager.deleteTextile(td1.innerHTML);
+
+       });
+       td4.innerHTML="UPDATE";
+       td4.addEventListener("click", function(){
+        let updatedValue=prompt("Enter new price of "+myName,0);
+        td2.innerHTML=updatedValue;
+        return myTextileManager.updatePrice(myName,updatedValue);
+       }
+       
+       );
+       td4.style.color="green";
+       tr.appendChild(td1);
+       tr.appendChild(td2);
+       tr.appendChild(td3);
+       tr.appendChild(td4);
+       myTable.appendChild(tr);
+       
+
+    }
+    
+</script>
+
+</html>
